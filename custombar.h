@@ -6,6 +6,7 @@
 #include <QObject>
 #include <QPushButton>
 #include <QWidget>
+#include<QDebug>
 
 class customBar : public QWidget
 {

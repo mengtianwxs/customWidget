@@ -5,24 +5,28 @@
 
 customBar::customBar(QWidget *parent) : QWidget(parent)
 {
-    setFixedHeight(30);
-    setWindowFlags(Qt::FramelessWindowHint);
+
+//    setWindowFlags(Qt::FramelessWindowHint);
+//    setFixedHeight(30);
 
 
-    lal_icon=new QLabel(this);
+    lal_icon=new QLabel();
     lal_icon->setFixedSize(30,30);
 //    lal_icon->setScaledContents(true);
 
 
-    lal_title=new QLabel(this);
+    lal_title=new QLabel();
     lal_title->setText("this is window title");
-//    lal_title->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Fixed);
+    lal_title->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Fixed);
     lal_title->setFixedHeight(30);
     lal_title->setScaledContents(true);
 
-    btn_min=new QPushButton(this);
-    btn_max=new QPushButton(this);
-    btn_close=new QPushButton(this);
+    btn_min=new QPushButton();
+    btn_max=new QPushButton();
+    btn_close=new QPushButton();
+    btn_max->setText("+");
+    btn_min->setText("-");
+    btn_close->setText("x");
 
 
 
@@ -31,6 +35,12 @@ customBar::customBar(QWidget *parent) : QWidget(parent)
     btn_close->setFixedSize(27,22);
 
 
+    QWidget* mainWidget=new QWidget();
+    QHBoxLayout* mainLayout=new QHBoxLayout(this);
+    mainLayout->addWidget(mainWidget);
+    mainWidget->setStyleSheet("QWidget{background:#c2c2c2;}");
+    mainWidget->setFixedHeight(30);
+    mainLayout->setMargin(0);
 
 
 //    QFont font("Microsoft YaHei",14,2);
@@ -45,11 +55,13 @@ customBar::customBar(QWidget *parent) : QWidget(parent)
     hbox->addWidget(btn_close);
     hbox->setSpacing(0);
     hbox->setContentsMargins(0,0,0,0);
-    setLayout(hbox);
+//    hbox->SetFixedSize(800,30);
+//    setLayout(hbox);
+    mainWidget->setLayout(hbox);
 
 
 
-     this->setStyleSheet("QHBoxLayout,QWidget,QPushButton,QLabel{background:transparent;background-color:#c2c2c2;}");
+//     this->setStyleSheet("QWidget{background:#c2c2c2;} QPushButton#btn_min{background:transparent;} ");
 
     connect(btn_min,SIGNAL(clicked()),this,SLOT(onClick()));
     connect(btn_max,SIGNAL(clicked()),this,SLOT(onClick()));
@@ -124,7 +136,14 @@ void customBar::onClick()
             pw->showMinimized();
         }
         if(pb==btn_max){
-           pw->isMaximized()?pw->showNormal():pw->showMaximized();
+            if(pw->windowState()==Qt::WindowMaximized){
+                pw->setWindowState(Qt::WindowNoState);
+                qDebug()<<"normal";
+            }else {
+               pw->showMaximized();
+                qDebug()<<"max";
+            }
+//           pw->isMaximized()?pw->showNormal():pw->showMaximized();
         }
         if(pb==btn_close){
 

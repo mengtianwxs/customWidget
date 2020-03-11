@@ -12,6 +12,7 @@ Widget::Widget(QWidget *parent) :
     ui(new Ui::Widget)
 {
     ui->setupUi(this);
+//    this->setWindowState(Qt::WindowMaximized);
     setWindowFlags(Qt::FramelessWindowHint);
 //    QDesktopWidget* pw=QApplication::desktop();
 //    int desktop_width=pw->screen()->width();
@@ -23,6 +24,7 @@ Widget::Widget(QWidget *parent) :
     this->setWindowTitle("mt pptest");
     QIcon icon("images/i1.png");
     this->setWindowIcon(icon);
+//    this->setStyleSheet("QWidget.cb{background:#c3c3c3;border-color:#c3c3c3;}");
 
 
 
