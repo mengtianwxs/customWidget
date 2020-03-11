@@ -1,6 +1,7 @@
 #include "custombar.h"
 
 #include <QHBoxLayout>
+#include <QLineEdit>
 #include <QSizePolicy>
 
 customBar::customBar(QWidget *parent) : QWidget(parent)
@@ -45,11 +46,15 @@ customBar::customBar(QWidget *parent) : QWidget(parent)
 
 //    QFont font("Microsoft YaHei",14,2);
 //    lal_title->setFont(font);
+
+    QLineEdit* le=new QLineEdit();
+
     QHBoxLayout* hbox=new QHBoxLayout();
     hbox->addWidget(lal_icon);
     hbox->addStretch(1);
     hbox->addWidget(lal_title);
     hbox->addStretch(1);
+    hbox->addWidget(le);
     hbox->addWidget(btn_min);
     hbox->addWidget(btn_max);
     hbox->addWidget(btn_close);
@@ -90,6 +95,21 @@ void customBar::mouseReleaseEvent(QMouseEvent *event)
     if(event->button()==Qt::LeftButton){
         isLeftPressed=false;
     }
+}
+
+void customBar::mouseDoubleClickEvent(QMouseEvent *event)
+{
+        qDebug()<<"doublce";
+        QWidget* pw=this->parentWidget();
+        if(pw->windowState()==Qt::WindowNoState){
+            pw->showMaximized();
+        }else if(pw->windowState()==Qt::WindowMaximized){
+
+            pw->showNormal();
+        }
+
+
+
 }
 
 bool customBar::eventFilter(QObject *obj, QEvent *event)
