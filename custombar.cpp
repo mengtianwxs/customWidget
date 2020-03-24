@@ -21,6 +21,7 @@ customBar::customBar(QWidget *parent) : QWidget(parent)
     lal_title->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Fixed);
     lal_title->setFixedHeight(30);
     lal_title->setScaledContents(true);
+    lal_title->setStyleSheet("color:#ffffff");
 
     btn_min=new QPushButton();
     btn_max=new QPushButton();
@@ -28,6 +29,16 @@ customBar::customBar(QWidget *parent) : QWidget(parent)
     btn_max->setText("+");
     btn_min->setText("-");
     btn_close->setText("x");
+    btn_close->setFlat(false);
+
+
+
+    btn_min->setStyleSheet(" QPushButton{color:#ffffff;background:transparent;border:none;}QPushButton::hover{background:#00a06e;} ");
+    btn_max->setStyleSheet(" QPushButton{color:#ffffff;background:transparent;border:none;}QPushButton::hover{background:#00a06e;} ");
+    btn_close->setStyleSheet(" QPushButton{color:#ffffff;background:transparent;border:none;}QPushButton::hover{background:#00a06e;} ");
+
+
+
 
 
 
@@ -39,7 +50,7 @@ customBar::customBar(QWidget *parent) : QWidget(parent)
     QWidget* mainWidget=new QWidget();
     QHBoxLayout* mainLayout=new QHBoxLayout(this);
     mainLayout->addWidget(mainWidget);
-    mainWidget->setStyleSheet("QWidget{background:#c2c2c2;}");
+    mainWidget->setStyleSheet("QWidget{background:#14af78;}");
     mainWidget->setFixedHeight(30);
     mainLayout->setMargin(0);
 
@@ -48,6 +59,7 @@ customBar::customBar(QWidget *parent) : QWidget(parent)
 //    lal_title->setFont(font);
 
     QLineEdit* le=new QLineEdit();
+    le->setStyleSheet("QLineEdit{background:#ffffff;}QLineEdit::hover{border:none}");
 
     QHBoxLayout* hbox=new QHBoxLayout();
     hbox->addWidget(lal_icon);
@@ -66,7 +78,7 @@ customBar::customBar(QWidget *parent) : QWidget(parent)
 
 
 
-//     this->setStyleSheet("QWidget{background:#c2c2c2;} QPushButton#btn_min{background:transparent;} ");
+
 
     connect(btn_min,SIGNAL(clicked()),this,SLOT(onClick()));
     connect(btn_max,SIGNAL(clicked()),this,SLOT(onClick()));

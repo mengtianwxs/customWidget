@@ -27,11 +27,13 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         widget.cpp \
-    custombar.cpp
+    custombar.cpp \
+    customtabbar.cpp
 
 HEADERS += \
         widget.h \
-    custombar.h
+    custombar.h \
+    customtabbar.h
 
 FORMS += \
         widget.ui
