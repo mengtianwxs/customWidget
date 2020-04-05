@@ -1,6 +1,7 @@
 #include "widget.h"
 #include "ui_widget.h"
 #include "custombar.h"
+#include "customstatusbar.h"
 
 #include <QDesktopWidget>
 #include <QHBoxLayout>
@@ -39,8 +40,9 @@ Widget::Widget(QWidget *parent) :
 //    pb->setText("this is button mt");
 
 
-    QStatusBar* sb=new QStatusBar(this);
-    sb->setSizeGripEnabled(false);
+//    QStatusBar* sb=new QStatusBar(this);
+
+//    sb->setSizeGripEnabled(false);
 
 //    sgp=new QSizeGrip(this);
 //    sgp->resize(30,30);
@@ -67,12 +69,16 @@ Widget::Widget(QWidget *parent) :
 
 
 //    sb->showMessage("this is mt");
-//   QStatusBar* sb=new QStatusBar(this);
+   QStatusBar* sb=new QStatusBar(this);
 //   sb->setSizeGripEnabled(false);
+   sb->setAttribute(Qt::WA_TransparentForMouseEvents,true);
 
     tabWidget=ui->tabWidget;
     tabWidget->resize(this->width(),100);
     tabWidget->setStyleSheet("background-color: red;");
+
+//    customStatusBar* sb=new customStatusBar(this);
+
 
     QVBoxLayout* vbox=new QVBoxLayout();
     vbox->addWidget(cb,0,Qt::AlignTop);
